@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sortingalgorithmsvisualization.application.AlgorithmType
 import com.example.sortingalgorithmsvisualization.application.ValueType
+import com.example.sortingalgorithmsvisualization.application.api.external.repository.SortingRepository
 import com.example.sortingalgorithmsvisualization.application.api.internal.interactor.SortingInteractor
 import com.example.sortingalgorithmsvisualization.application.api.internal.interactor.ValuesInteractor
 import com.example.sortingalgorithmsvisualization.application.impl.interactor.SortingInteractorImpl
@@ -20,7 +21,7 @@ class SortingViewModel(application: Application) : AndroidViewModel(application)
 
     private val sortingInteractor: SortingInteractor = SortingInteractorImpl()
     private val valuesInteractor: ValuesInteractor = ValuesInteractorImpl()
-    private val repository: SortingRepositoryImpl = SortingRepositoryImpl(
+    private val repository: SortingRepository = SortingRepositoryImpl(
         preferences = application.getSharedPreferences(
             "SortingPrefs", Context.MODE_PRIVATE
         )
