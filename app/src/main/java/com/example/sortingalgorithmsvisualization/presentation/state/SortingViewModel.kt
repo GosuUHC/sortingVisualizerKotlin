@@ -11,7 +11,7 @@ import com.example.sortingalgorithmsvisualization.application.api.internal.inter
 import com.example.sortingalgorithmsvisualization.application.api.internal.interactor.ValuesInteractor
 import com.example.sortingalgorithmsvisualization.application.impl.interactor.SortingInteractorImpl
 import com.example.sortingalgorithmsvisualization.application.impl.interactor.ValuesInteractorImpl
-import com.example.sortingalgorithmsvisualization.infrastructure.repository.SortingRepository
+import com.example.sortingalgorithmsvisualization.infrastructure.repository.SortingRepositoryImpl
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.Duration
@@ -20,7 +20,7 @@ class SortingViewModel(application: Application) : AndroidViewModel(application)
 
     private val sortingInteractor: SortingInteractor = SortingInteractorImpl()
     private val valuesInteractor: ValuesInteractor = ValuesInteractorImpl()
-    private val repository: SortingRepository = SortingRepository(
+    private val repository: SortingRepositoryImpl = SortingRepositoryImpl(
         preferences = application.getSharedPreferences(
             "SortingPrefs", Context.MODE_PRIVATE
         )

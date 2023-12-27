@@ -15,19 +15,16 @@ class BubbleSort(
         val length = input.size
         for (i in 0 until length - 1) {
             var swapped = false
-
             for (j in 0 until length - 1 - i) {
                 if (isComplete) {
                     Log.i("COMPLETE", "RETURNING")
                     return
                 }
-
                 if (comparator.compare(input, j, j + 1) > 0) {
                     swapper.swap(input, j, j + 1)
                     swapped = true
                 }
             }
-
             if (!swapped) {
                 break
             }
