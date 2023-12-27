@@ -17,7 +17,6 @@ class SortingInteractorImpl : SortingInteractor {
     private var swapper: Swapper? = null
     private var comparator: ValuesComparator? = null
     private var delayDuration: Duration? = null
-    private var isSorting: Boolean = false
 
     override suspend fun startSorting(
         algorithmType: AlgorithmType,
@@ -30,19 +29,9 @@ class SortingInteractorImpl : SortingInteractor {
         swapper = configureSwapper(onChangeCallback)
         comparator = configureComparator(onCompareCallback)
 
-        updateAlgorithm(algorithmType)
-        isSorting = true
+        sortingAlgorithm = configureSortingAlgorithm(algorithmType)
 
         sortingAlgorithm!!.sort(input)
-    }
-
-
-    override fun pauseSorting() {
-        isSorting = false
-    }
-
-    override fun resumeSorting() {
-        isSorting = true
     }
 
     override fun updateDelay(delay: Duration) {
@@ -51,10 +40,6 @@ class SortingInteractorImpl : SortingInteractor {
 
     override fun reset() {
         sortingAlgorithm?.stopSorting()
-    }
-
-    private fun updateAlgorithm(algorithmType: AlgorithmType) {
-        sortingAlgorithm = configureSortingAlgorithm(algorithmType)
     }
 
     private fun configureSwapper(onChangeCallback: () -> Unit): Swapper {
@@ -70,13 +55,9 @@ class SortingInteractorImpl : SortingInteractor {
         val comparator = this.comparator!!
 
         return when (algorithmType) {
-            AlgorithmType.BUBBLE -> SortingAlgorithmsFactory.createBubbleSort(
-                swapper, comparator
-            )
+            AlgorithmType.BUBBLE -> SortingAlgorithmsFactory.createBubbleSort(swapper, comparator)
 
-            AlgorithmType.QUICK -> SortingAlgorithmsFactory.createQuickSort(
-                swapper, comparator
-            )
+            AlgorithmType.QUICK -> SortingAlgorithmsFactory.createQuickSort(swapper, comparator)
         }
     }
 }

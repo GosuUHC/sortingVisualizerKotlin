@@ -12,8 +12,6 @@ interface SortingInteractor {
         onCompareCallback: suspend (MutableList<Int>) -> Unit,
     )
 
-    fun pauseSorting()
-    fun resumeSorting()
     fun updateDelay(delay: Duration)
     fun reset()
 }

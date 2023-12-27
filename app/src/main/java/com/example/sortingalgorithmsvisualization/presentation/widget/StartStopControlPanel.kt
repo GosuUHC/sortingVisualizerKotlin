@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.sortingalgorithmsvisualization.presentation.state.SortingStatus
 import com.example.sortingalgorithmsvisualization.presentation.state.SortingViewModel
-//import com.example.sortingalgorithmsvisualization.presentation.state.SortingViewModelFactory
 
 @Composable
 fun StartStopControlPanel(vm: SortingViewModel = viewModel()) {

@@ -101,6 +101,14 @@ class SortingViewModel(application: Application) : AndroidViewModel(application)
 
     }
 
+    private fun pauseSorting() {
+        sortingStatus.value = SortingStatus.PAUSED
+    }
+
+    private fun resumeSorting() {
+        sortingStatus.value = SortingStatus.RUNNING
+    }
+
     private suspend fun onCompareElements(comparingIndices: MutableList<Int>) {
         delay(delay.value.toMillis())
 
@@ -144,17 +152,6 @@ class SortingViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    private fun pauseSorting() {
-        sortingStatus.value = SortingStatus.PAUSED
-
-        sortingInteractor.pauseSorting()
-    }
-
-    private fun resumeSorting() {
-        sortingStatus.value = SortingStatus.RUNNING
-
-        sortingInteractor.resumeSorting()
-    }
 
     private fun saveToRepository() {
         viewModelScope.launch {
@@ -166,11 +163,3 @@ class SortingViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 }
-
-//object SortingViewModelFactory {
-//    private var sortingViewModel: SortingViewModel = SortingViewModel()
-//
-//    fun createInstance(): SortingViewModel {
-//        return sortingViewModel
-//    }
-//}
